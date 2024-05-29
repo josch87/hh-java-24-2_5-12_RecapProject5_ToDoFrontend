@@ -61,8 +61,8 @@ export default function CreateTaskPage() {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         axios.post<TaskType>("/api/todo", newTask)
-            .then((response) => {
-                navigate("/tasks/" + response.data.id)
+            .then(() => {
+                navigate("/tasks")
         })
             .catch((error) => {
                 console.error(error.message);
