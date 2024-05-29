@@ -28,6 +28,15 @@ export default function TaskDetailsPage() {
             })
     }
 
+    if (!task) {
+        return (
+            <MainTemplate>
+                <p>This task does not exist.</p>
+            </MainTemplate>
+        )
+    }
+
+
     return (
         <MainTemplate>
             <h1>{task.description}</h1>
