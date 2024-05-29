@@ -85,6 +85,7 @@ export default function CreateTaskPage() {
                         <StyledSelect id="status" name="status" onChange={handleChange} value={newTask.status} required>
                             <option value="OPEN">Open</option>
                             <option value="IN_PROGRESS">In Progress</option>
+                            <option value="DONE">Done</option>
                         </StyledSelect>
                     </StyledInputLine>
                 </StyledMain>

@@ -8,5 +8,5 @@ export type TaskType = {
 
 export type NewTaskDTOType = {
     description: string,
-    status: "OPEN" | "IN_PROGRESS",
+    status: TaskStatusEnumType,
 }

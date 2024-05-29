@@ -10,6 +10,11 @@ const StyledArticle = styled.article`
     border: 1px solid lightgray;
     padding: 5px 10px;
     cursor: pointer;
+    background-color: white;
+
+    &:hover {
+        background-color: #efefef;
+    }
 `;
 
 const StyledTaskIdentifier = styled.div`
