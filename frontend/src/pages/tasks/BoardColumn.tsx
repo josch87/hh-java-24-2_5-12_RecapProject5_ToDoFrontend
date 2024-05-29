@@ -11,6 +11,7 @@ const StyledBoardColumn = styled.div`
     background-color: #fafafa;
     padding: .5rem;
     min-width: 350px;
+    border-radius: 5px;
 `;
 
 const StyledHeader = styled.div`

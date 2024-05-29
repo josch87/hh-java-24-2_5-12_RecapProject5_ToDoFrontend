@@ -11,6 +11,7 @@ const StyledArticle = styled.article`
     padding: 5px 10px;
     cursor: pointer;
     background-color: white;
+    border-radius: 5px;
 
     &:hover {
         background-color: #efefef;
