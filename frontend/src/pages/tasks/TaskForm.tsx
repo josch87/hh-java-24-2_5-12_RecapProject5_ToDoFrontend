@@ -1,6 +1,7 @@
 import {ChangeEventHandler, FormEventHandler} from "react";
 import styled from "styled-components";
 import {NewTaskDTOType} from "../../model/model.ts";
+import {useNavigate} from "react-router-dom";
 
 type TaskFormProps = {
     handleSubmit: FormEventHandler<HTMLFormElement>,
@@ -40,6 +41,9 @@ const StyledFooter = styled.footer`
 `;
 
 export default function TaskForm({handleSubmit, handleChange, newTask}: TaskFormProps) {
+
+    const navigate = useNavigate();
+
     return (
         <StyledForm onSubmit={handleSubmit}>
             <StyledMain>
@@ -58,6 +62,7 @@ export default function TaskForm({handleSubmit, handleChange, newTask}: TaskForm
             </StyledMain>
 
             <StyledFooter>
+                <button type={"button"} onClick={() => {navigate(-1)}}>Cancel</button>
                 <button type="submit">Create</button>
             </StyledFooter>
 
