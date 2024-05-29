@@ -6,12 +6,12 @@ import {NewTaskDTOType, TaskType} from "../../model/model.ts";
 import {useNavigate} from "react-router-dom";
 import TaskForm from "./TaskForm.tsx";
 
-const StyledParagraph = styled.p`
+export const StyledParagraph = styled.p`
     font-size: .8rem;
     font-weight: 300;
 `;
 
-const StyledErrorBox = styled.div`
+export const StyledErrorBox = styled.div`
     color: red;
     border: 1px solid red;
     margin-top: .5rem;
