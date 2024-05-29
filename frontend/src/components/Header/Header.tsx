@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo";
+import MainNavigation from "./MainNavigation.tsx";
+import Button from "../Button.tsx";
 
 const StyledHeader = styled.header`
     display: flex;
@@ -13,6 +15,8 @@ export default function Header() {
     return (
         <StyledHeader>
             <Logo />
+            <MainNavigation />
+            <Button linksTo="/tasks/new">Create</Button>
         </StyledHeader>
     )
 }
