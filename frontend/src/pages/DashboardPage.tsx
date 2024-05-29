@@ -1,9 +1,9 @@
 import MainTemplate from "./templates/MainTemplate.tsx";
 
-export default function HomePage() {
+export default function DashboardPage() {
     return (
         <MainTemplate>
-            <h1>Welcome to TaskDesk</h1>
+            <h1>Dashboard</h1>
         </MainTemplate>
     )
 }
