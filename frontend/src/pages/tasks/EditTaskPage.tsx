@@ -7,7 +7,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 export default function EditTaskPage() {
-    const [taskToUpdate, setTaskToUpdate] = useState<TaskType>({id: "-1", description: "", status: "OPEN"});
+    const [taskToUpdate, setTaskToUpdate] = useState<TaskType>({id: "", description: "", status: "OPEN"});
     const [errorMessage ,setErrorMessage] = useState({message: ""});
     const navigate = useNavigate();
 
@@ -38,6 +38,14 @@ export default function EditTaskPage() {
                 console.error(error.message);
                 setErrorMessage({message: "We encountered a problem. Please try again."})
             })
+    }
+
+    if (!taskToUpdate.id) {
+        return (
+            <MainTemplate>
+                <p>This task does not exist.</p>
+            </MainTemplate>
+        )
     }
 
     return (

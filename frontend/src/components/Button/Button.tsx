@@ -39,11 +39,10 @@ export default function Button({children, linksTo, primary = false, onClick}: Bu
     if (linksTo) {
         return (
             <StyledLink to={linksTo} $primary={primary}>{children}</StyledLink>
-
         )
 
     }
-    return (<>
-            <StyledButton $primary={primary} onClick={onClick}>{children}</StyledButton>
-    </>)
+    return (
+        <StyledButton $primary={primary} onClick={onClick}>{children}</StyledButton>
+    )
 }
