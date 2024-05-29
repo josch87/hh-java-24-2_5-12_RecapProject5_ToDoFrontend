@@ -9,6 +9,7 @@ type TaskCardProps = {
 const StyledArticle = styled.article`
     border: 1px solid lightgray;
     padding: 5px 10px;
+    cursor: pointer;
 `;
 
 const StyledTaskIdentifier = styled.div`

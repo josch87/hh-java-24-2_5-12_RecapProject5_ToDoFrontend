@@ -62,7 +62,7 @@ export default function CreateTaskPage() {
         event.preventDefault();
         axios.post<TaskType>("/api/todo", newTask)
             .then((response) => {
-                navigate("tasks/" + response.data.id)
+                navigate("/tasks/" + response.data.id)
         })
             .catch((error) => {
                 console.error(error.message);
