@@ -1,11 +1,12 @@
 import MainTemplate from "../templates/MainTemplate.tsx";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {TaskType} from "../../model/model.ts";
 import Button from "../../components/Button/Button.tsx";
 
 export default function TaskDetailsPage() {
+    const navigate = useNavigate();
     const params = useParams();
 
     const initialTask: TaskType = {
@@ -29,6 +30,16 @@ export default function TaskDetailsPage() {
             })
     }
 
+    function deleteTask() {
+        axios.delete("/api/todo/" + params.id)
+            .then(() => {
+                navigate("/tasks")
+            })
+            .catch((error) => {
+                console.error(error.message);
+            });
+    }
+
     if (!task) {
         return (
             <MainTemplate>
@@ -44,7 +55,7 @@ export default function TaskDetailsPage() {
                 <h1>{task.description}</h1>
                 <div>
                     <Button linksTo={`/tasks/${params.id}/edit`}>Edit</Button>
-                    <Button>Delete</Button>
+                    <Button onClick={deleteTask}>Delete</Button>
                 </div>
             </div>
         </MainTemplate>

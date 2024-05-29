@@ -1,10 +1,12 @@
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+import {MouseEventHandler, ReactNode} from "react";
 
 type ButtonProps = {
-    children: React.ReactNode,
+    children: ReactNode,
     linksTo?: string,
     primary?: boolean,
+    onClick?: MouseEventHandler<HTMLButtonElement>,
 }
 
 type StyledLinkProps = {
@@ -32,7 +34,7 @@ const StyledButton = styled.button<StyledLinkProps>`
     cursor: pointer;
 `;
 
-export default function Button({children, linksTo, primary = false}: ButtonProps) {
+export default function Button({children, linksTo, primary = false, onClick}: ButtonProps) {
 
     if (linksTo) {
         return (
@@ -42,6 +44,6 @@ export default function Button({children, linksTo, primary = false}: ButtonProps
 
     }
     return (<>
-            <StyledButton $primary={primary}>{children}</StyledButton>
+            <StyledButton $primary={primary} onClick={onClick}>{children}</StyledButton>
     </>)
 }
