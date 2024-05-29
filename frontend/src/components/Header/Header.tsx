@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import MainNavigation from "./MainNavigation.tsx";
-import Button from "../Button.tsx";
+import Button from "../Button/Button.tsx";
 
 const StyledHeader = styled.header`
     display: flex;
