@@ -3,11 +3,11 @@ import styled from "styled-components";
 import Header from "../../components/Header/Header.tsx";
 
 type MainTemplateProps = {
-    children: React.ReactNode,
+    children?: React.ReactNode,
 }
 
 const StyledMain = styled.main`
-    margin: 4rem;
+    margin: 2rem 3rem;
 `;
 
 export default function MainTemplate({children}: MainTemplateProps) {
