@@ -41,9 +41,17 @@ const StyledFooter = styled.footer`
     margin-top: 2rem;
 `;
 
+const StyledErrorBox = styled.div`
+    color: red;
+    border: 1px solid red;
+    margin-top: .5rem;
+    padding: 5px 10px;
+`;
+
 export default function CreateTaskPage() {
 
-    const [newTask, setNewTask] = useState<NewTaskDTOType>({description: "", status: "OPEN"})
+    const [newTask, setNewTask] = useState<NewTaskDTOType>({description: "", status: "OPEN"});
+    const [errorMessage ,setErrorMessage] = useState({message: ""});
     const navigate = useNavigate();
 
     function handleChange(event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
@@ -52,12 +60,13 @@ export default function CreateTaskPage() {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios.post<TaskType>("/api/todo/", newTask)
+        axios.post<TaskType>("/api/todo", newTask)
             .then((response) => {
                 navigate("tasks/" + response.data.id)
         })
             .catch((error) => {
                 console.error(error.message);
+                setErrorMessage({message: "We encountered a problem. Please try again."})
             })
     }
 
@@ -83,6 +92,8 @@ export default function CreateTaskPage() {
                 <StyledFooter>
                     <button type="submit">Create</button>
                 </StyledFooter>
+                {errorMessage.message && <StyledErrorBox>{errorMessage.message}</StyledErrorBox>}
+
             </StyledForm>
         </MainTemplate>
     )
