@@ -1,5 +1,6 @@
 import {TaskType} from "../../model/model.ts";
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom";
 
 type TaskCardProps = {
     task: TaskType,
@@ -17,8 +18,14 @@ const StyledTaskIdentifier = styled.div`
 `;
 
 export default function TaskCard({task}: TaskCardProps) {
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate("/tasks/" + task.id)
+
+    }
     return (
-        <StyledArticle>
+        <StyledArticle onClick={handleClick}>
             <div>{task.description}</div>
             <StyledTaskIdentifier>TSK-{task.id}</StyledTaskIdentifier>
         </StyledArticle>
