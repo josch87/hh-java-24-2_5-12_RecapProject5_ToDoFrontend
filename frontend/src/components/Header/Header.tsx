@@ -16,7 +16,7 @@ export default function Header() {
         <StyledHeader>
             <Logo />
             <MainNavigation />
-            <Button linksTo="/tasks/new">Create</Button>
+            <Button linksTo="/tasks/new" primary>Create</Button>
         </StyledHeader>
     )
 }

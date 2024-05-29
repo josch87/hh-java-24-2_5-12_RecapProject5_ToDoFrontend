@@ -4,25 +4,44 @@ import styled from "styled-components";
 type ButtonProps = {
     children: React.ReactNode,
     linksTo?: string,
+    primary?: boolean,
 }
 
-const StyledLink = styled(Link)`
-    color: white;
+type StyledLinkProps = {
+    $primary: boolean,
+}
+
+const StyledLink = styled(Link)<StyledLinkProps>`
+    color: ${props => props.$primary ? "white" : "grey"};
+    background-color: ${props => props.$primary ? "blueviolet" : "white"};
     font-weight: bold;
     text-decoration: none;
-    background-color: blueviolet;
     padding: .3rem .7rem;
     border-radius: 5px;
+    border: ${props => props.$primary ? undefined : "1px solid grey"}
 `;
 
-export default function Button({children, linksTo}: ButtonProps) {
+const StyledButton = styled.button<StyledLinkProps>`
+    color: ${props => props.$primary ? "white" : "grey"};
+    background-color: ${props => props.$primary ? "blueviolet" : "white"};
+    font-weight: bold;
+    text-decoration: none;
+    padding: .3rem .7rem;
+    border-radius: 5px;
+    border: ${props => props.$primary ? undefined : "1px solid grey"};
+    cursor: pointer;
+`;
+
+export default function Button({children, linksTo, primary = false}: ButtonProps) {
 
     if (linksTo) {
-    return (
-        <StyledLink to={linksTo}>{children}</StyledLink>
+        return (
+            <StyledLink to={linksTo} $primary={primary}>{children}</StyledLink>
 
-    )
+        )
 
     }
-    return (<></>)
+    return (<>
+            <StyledButton $primary={primary}>{children}</StyledButton>
+    </>)
 }

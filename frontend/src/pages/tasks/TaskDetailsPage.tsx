@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {TaskType} from "../../model/model.ts";
+import Button from "../../components/Button/Button.tsx";
 
 export default function TaskDetailsPage() {
     const params = useParams();
@@ -39,7 +40,13 @@ export default function TaskDetailsPage() {
 
     return (
         <MainTemplate>
-            <h1>{task.description}</h1>
+            <div>
+                <h1>{task.description}</h1>
+                <div>
+                    <Button linksTo={`/tasks/${params.id}/edit`}>Edit</Button>
+                    <Button>Delete</Button>
+                </div>
+            </div>
         </MainTemplate>
     )
 }
