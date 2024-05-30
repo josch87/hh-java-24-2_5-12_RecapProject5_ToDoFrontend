@@ -4,12 +4,11 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {TaskType} from "../../model/model.ts";
 import Button from "../../components/Button/Button.tsx";
-import {useSWRConfig} from "swr";
+import {mutate} from "swr";
 
 export default function TaskDetailsPage() {
     const navigate = useNavigate();
     const params = useParams();
-    const { mutate } = useSWRConfig()
 
     const initialTask: TaskType = {
         id: "",
@@ -35,13 +34,17 @@ export default function TaskDetailsPage() {
     function deleteTask() {
         axios.delete("/api/todo/" + params.id)
             .then(() => {
-                mutate("api/todo").then(() => {
-                    navigate("/tasks");
-
-                });
+                mutate("/api/todo")
+                    .then(() => {
+                        navigate("/tasks");
+                    })
+                    .catch(() => {
+                        console.error("Not able to mutate /api/todo")
+                    });
 
             })
             .catch((error) => {
+                console.error("Not able to delete task with ID " + params.id);
                 console.error(error.message);
             });
     }
