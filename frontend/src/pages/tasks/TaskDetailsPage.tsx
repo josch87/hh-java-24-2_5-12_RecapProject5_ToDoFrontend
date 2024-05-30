@@ -34,15 +34,7 @@ export default function TaskDetailsPage() {
     function deleteTask() {
         axios.delete("/api/todo/" + params.id)
             .then(() => {
-                    console.log("starting to mutate /api/todo")
                     mutate("/api/todo")
-                        .then(() => {
-                            console.log("Mutated /api/todo successfully")
-                        })
-                        .catch(() => {
-                            console.error("Not able to mutate /api/todo")
-                        });
-                    console.log("Navigating to /tasks")
                     navigate("/tasks");
                 }
             )

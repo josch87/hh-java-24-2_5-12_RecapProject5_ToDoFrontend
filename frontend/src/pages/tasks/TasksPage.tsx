@@ -25,7 +25,6 @@ export default function TasksPage() {
     if (!tasks) {
         return (<p>No tasks available.</p>);
     }
-console.log("Displaying TasksPage")
 
     return (
         <MainTemplate>
