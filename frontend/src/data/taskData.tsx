@@ -14,3 +14,13 @@ export function useTasks() {
         isError: error
     }
 }
+
+export function useTask(taskId: string) {
+    const {data, error, isLoading} = useSWR<TaskType>(`/api/todo/${taskId}`, fetcher);
+
+    return {
+        task: data,
+        isLoading,
+        isError: error
+    }
+}
