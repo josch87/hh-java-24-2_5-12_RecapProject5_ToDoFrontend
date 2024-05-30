@@ -18,8 +18,6 @@ export default function DashboardPage() {
             })
     }
 
-
-
     return (
         <MainTemplate>
             <h1>Dashboard</h1>
