@@ -1,21 +1,34 @@
 import MainTemplate from "./templates/MainTemplate.tsx";
-import axios from "axios";
-import {useEffect, useState} from "react";
-import {TaskType} from "../model/model.ts";
+import {useTasks} from "../data/taskData.tsx";
 
 export default function DashboardPage() {
+    /*
+        const [tasks, setTasks] = useState<TaskType[]>([]);
 
-    const [tasks, setTasks] = useState<TaskType[]>([]);
+        useEffect(() => {
+            getTasks();
+        }, []);
 
-    useEffect(() => {
-        getTasks();
-    }, []);
+        function getTasks() {
+            axios.get("/api/todo")
+                .then((response) => {
+                    setTasks(response.data)
+                })
+        }
+    */
 
-    function getTasks() {
-        axios.get("/api/todo")
-            .then((response) => {
-                setTasks(response.data)
-            })
+    const {tasks, isLoading, isError} = useTasks();
+
+    if (isLoading) {
+        return (<></>)
+    }
+
+    if (isError) {
+        return (<></>)
+    }
+
+    if (!tasks) {
+        return (<p>No tasks available.</p>)
     }
 
     return (

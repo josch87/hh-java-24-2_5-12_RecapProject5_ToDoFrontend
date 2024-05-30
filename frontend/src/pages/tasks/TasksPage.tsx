@@ -1,9 +1,7 @@
 import MainTemplate from "../templates/MainTemplate.tsx";
-import {useEffect, useState} from "react";
-import {TaskType} from "../../model/model.ts";
-import axios from "axios";
 import styled from "styled-components";
 import BoardColumn from "./BoardColumn.tsx";
+import {useTasks} from "../../data/taskData.tsx";
 
 const StyledMainSection = styled.div`
     display: flex;
@@ -12,27 +10,23 @@ const StyledMainSection = styled.div`
 `;
 
 export default function TasksPage() {
-    const [tasks, setTasks] = useState<TaskType[]>([])
+    const {tasks, isLoading, isError} = useTasks();
+
+    if (isLoading) {
+        return (<p>Still loading</p>)
+    }
+
+    if (isError) {
+        return (<p>Some error occurred!</p>)
+    }
+
+    if (!tasks) {
+        return (<p>No tasks available.</p>);
+    }
 
     const openTasks = tasks.filter((task) => task.status === "OPEN")
     const inProgressTasks = tasks.filter((task) => task.status === "IN_PROGRESS")
     const closedTasks = tasks.filter((task) => task.status === "DONE")
-
-    useEffect(() => {
-        getAllTasks();
-    }, []);
-
-    function getAllTasks() {
-        axios.get<TaskType[]>("/api/todo")
-            .then((response) => {
-                setTasks(response.data);
-            })
-            .catch((error) => {
-                console.error(error.message)
-            })
-    }
-
-
 
     return (
         <MainTemplate>
