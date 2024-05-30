@@ -2,6 +2,7 @@ import MainTemplate from "../templates/MainTemplate.tsx";
 import styled from "styled-components";
 import BoardColumn from "./BoardColumn.tsx";
 import {useTasks} from "../../data/taskData.tsx";
+import {filterTasksByStatus} from "../../utils/taskUtils.ts";
 
 const StyledMainSection = styled.div`
     display: flex;
@@ -24,17 +25,13 @@ export default function TasksPage() {
         return (<p>No tasks available.</p>);
     }
 
-    const openTasks = tasks.filter((task) => task.status === "OPEN")
-    const inProgressTasks = tasks.filter((task) => task.status === "IN_PROGRESS")
-    const closedTasks = tasks.filter((task) => task.status === "DONE")
-
     return (
         <MainTemplate>
             <h1>My Tasks</h1>
             <StyledMainSection>
-                <BoardColumn tasks={openTasks} heading={"Open"}/>
-                <BoardColumn tasks={inProgressTasks} heading={"In Progress"}/>
-                <BoardColumn tasks={closedTasks} heading={"Done"}/>
+                <BoardColumn tasks={filterTasksByStatus(tasks, "OPEN")} heading={"Open"}/>
+                <BoardColumn tasks={filterTasksByStatus(tasks, "IN_PROGRESS")} heading={"In Progress"}/>
+                <BoardColumn tasks={filterTasksByStatus(tasks, "DONE")} heading={"Done"}/>
             </StyledMainSection>
         </MainTemplate>
     )

@@ -1,4 +1,4 @@
-type TaskStatusEnumType = "OPEN" | "IN_PROGRESS" | "DONE";
+export type TaskStatusEnumType = "OPEN" | "IN_PROGRESS" | "DONE";
 
 export type TaskType = {
     id: string,
