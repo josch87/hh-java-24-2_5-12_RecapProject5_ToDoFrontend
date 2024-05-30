@@ -18,18 +18,19 @@ export default function TaskDetailsPage() {
     const [task, setTask] = useState<TaskType>(initialTask);
 
     useEffect(() => {
-        getTask();
-    }, []);
+        function getTask() {
+            axios.get("/api/todo/" + params.id)
+                .then((response) => {
+                    setTask(response.data);
+                })
+                .catch((error) => {
+                    console.error(error.message);
+                })
+        }
 
-    function getTask() {
-        axios.get("/api/todo/" + params.id)
-            .then((response) => {
-                setTask(response.data);
-            })
-            .catch((error) => {
-                console.error(error.message);
-            })
-    }
+        getTask();
+    }, [params.id]);
+
 
     function deleteTask() {
         axios.delete("/api/todo/" + params.id)
@@ -51,7 +52,6 @@ export default function TaskDetailsPage() {
             </MainTemplate>
         )
     }
-
 
     return (
         <MainTemplate>
