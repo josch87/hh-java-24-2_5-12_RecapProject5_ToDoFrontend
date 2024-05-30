@@ -10,6 +10,7 @@ const StyledMainSection = styled.div`
     margin-top: 2rem;
 `;
 
+
 export default function TasksPage() {
     const {tasks, isLoading, isError} = useTasks();
 
@@ -24,6 +25,7 @@ export default function TasksPage() {
     if (!tasks) {
         return (<p>No tasks available.</p>);
     }
+console.log("Displaying TasksPage")
 
     return (
         <MainTemplate>
